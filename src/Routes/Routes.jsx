@@ -5,6 +5,7 @@ import Root from './Root/Root';
 import Home from '../components/Home/Home';
 import Listedbooks from '../components/ListedBook/Listedbooks';
 import Pagetoread from '../components/Pagetoread/Pagetoread';
+import Details from '../components/Details/Details';
 
 
 
@@ -26,6 +27,11 @@ export const router = createBrowserRouter([
       {
         path: '/pagetoread',
         element: <Pagetoread></Pagetoread>
+      },
+      {
+        path: '/details/:id',
+        loader : ()=> fetch('booksData.json'),
+        element: <Details></Details>
       }
     ]
   },
