@@ -1,11 +1,12 @@
-import React from 'react';
-import { useLoaderData, useParams } from 'react-router';
+import React from "react";
+import { useLoaderData, useParams } from "react-router";
+import { addStoreData, storeWislistdata } from "../../Utilitys";
 
 const Details = () => {
   const { id } = useParams();
   const parseId = parseInt(id);
   const books = useLoaderData();
-  const singleData = books.find(book => book.bookId === parseId);
+  const singleData = books.find((book) => book.bookId === parseId);
 
   const {
     bookName,
@@ -18,7 +19,15 @@ const Details = () => {
     tags,
     publisher,
     yearOfPublishing,
+    bookId,
   } = singleData;
+
+  const handleRead = (id) => {
+    addStoreData(id);
+  };
+  const handlegetWishlistdata = (id) => {
+    storeWislistdata(id);
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-10">
@@ -42,9 +51,7 @@ const Details = () => {
             <p className="text-sm text-gray-700 mb-4">{category}</p>
             <hr className="my-3 border-gray-300" />
 
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              {review}
-            </p>
+            <p className="text-gray-600 mb-4 leading-relaxed">{review}</p>
 
             <div className="flex flex-wrap gap-2 mb-4">
               {tags.map((tag, idx) => (
@@ -75,10 +82,16 @@ const Details = () => {
           </div>
 
           <div className="flex gap-3 mt-4">
-            <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+            <button
+              onClick={() => handleRead(bookId)}
+              className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
               Read
             </button>
-            <button className="bg-gray-200 text-gray-800 px-5 py-2 rounded-lg hover:bg-gray-300 transition">
+            <button
+              onClick={() => handlegetWishlistdata(bookId)}
+              className="bg-gray-200 text-gray-800 px-5 py-2 rounded-lg hover:bg-gray-300 transition"
+            >
               Wishlist
             </button>
           </div>
