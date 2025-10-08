@@ -2,25 +2,26 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Banner = () => {
-    return (
-        <div>
-            <div className=" mb-10 shadow-sm flex justify-evenly bg-slate-100 rounded-2xl">
+  return (
+    <div className="mb-10 shadow-sm bg-slate-100 rounded-2xl flex flex-col lg:flex-row items-center justify-between p-6 lg:p-10">
+      <div className="lg:w-1/2 w-full text-center lg:text-start space-y-5">
+        <h2 className="text-4xl lg:text-5xl font-semibold leading-tight font-titillium">
+          Books to freshen up <br className="hidden lg:block" /> your bookshelf
+        </h2>
+        <Link to={'/pagetoread'}>
+          <button className="btn btn-outline mt-4">View The List</button>
+        </Link>
+      </div>
 
-                <div className="mt-6">
-                    <h2 className="text-5xl font-semibold leading-16 text-start font-titillium">NBooks to freshen up <br /> your bookshelf</h2>
-
-                    <Link to={'/pagetoread'}><button className="btn btn-outline flex mt-10">View The List</button></Link>
-                </div>
-
-
-                <figure>
-                    <img className='p-5 rounded-4xl mr-6'
-                        src="./src/assets/book1.JPG"
-                        alt="Movie" />
-                </figure>
-            </div>
-        </div>
-    );
+      <figure className="lg:w-1/2 w-full flex justify-center mt-6 lg:mt-0">
+        <img
+          className="p-5 rounded-2xl w-full max-w-sm object-contain"
+          src="./src/assets/book1.JPG"
+          alt="Book Banner"
+        />
+      </figure>
+    </div>
+  );
 };
 
 export default Banner;
