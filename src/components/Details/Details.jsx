@@ -1,6 +1,8 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
-import { addStoreData, storeWislistdata } from "../../Utilitys";
+import { addStoreData, getStoredData, getWishlistdata, storeWislistdata } from "../../Utilitys";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Details = () => {
   const { id } = useParams();
@@ -23,10 +25,38 @@ const Details = () => {
   } = singleData;
 
   const handleRead = (id) => {
-    addStoreData(id);
+
+
+    const getdata = getStoredData();
+    const exist = getdata.includes(id);
+
+    if (exist) {
+      toast.warn("Already Added to Read List! ");
+    }
+    else {
+      addStoreData(id);
+      toast.success(` added to Read List! `);
+    }
+
+
   };
+
   const handlegetWishlistdata = (id) => {
-    storeWislistdata(id);
+
+
+    const getwishdata = getWishlistdata();
+
+    const existwishdata = getwishdata.includes(id);
+
+    if (existwishdata) {
+      toast.warn("Already Added to Wish List! ");
+    }
+
+    else {
+      storeWislistdata(id);
+      toast.success(` added to Wish List! `);
+    }
+
   };
 
   return (
@@ -97,6 +127,8 @@ const Details = () => {
           </div>
         </div>
       </div>
+
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };

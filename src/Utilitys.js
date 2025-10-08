@@ -17,9 +17,9 @@ const addStoreData = (id) => {
     storedData.push(id);
 
     localStorage.setItem("readlist", JSON.stringify(storedData));
-    alert("local storage a add korlam");
+    
   } else {
-    alert(" vai ager a data ace ");
+    
   }
 };
 
@@ -40,9 +40,9 @@ const storeWislistdata = (id) => {
   if (!existingdata) {
     getData.push(id);
     localStorage.setItem("wislist", JSON.stringify(getData));
-    alert("wislist a add korlam");
+    
   } else {
-    alert("ager a add kora ace ");
+    
   }
 };
 
